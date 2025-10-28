@@ -10,16 +10,14 @@
 #include "PortF.h"
 #include "PLL.h"
 
-#define TOO_FAR 400
-#define FOLLOW_DIST 1400
-#define TOO_CLOSE 1900
+#define TOO_FAR 1100
+#define FOLLOW_DIST 1675
+#define TOO_CLOSE 1850
+#define OUT_OF_RANGE 500
 
 enum robot_modes {INACTIVE, OBJECT_FOLLOWER, WALL_FOLLOWER};
 
-uint16_t FrontSensor; // Front Sensor: E0
-uint16_t LeftSensor; // Left Sensor: E1
-uint16_t RightSensor; // Right Sensor: E2
-
+uint16_t FrontMedian, LeftMedian,RightMedian;
 
 // Function prototypes
 // external functions
@@ -55,8 +53,8 @@ int main(void){
 
 void System_Init(void){
 	DisableInterrupts();
+	PLL_Init();	               // set system clock to 16 MHz
 	ADC1_SS1_Init();       // Initialize ADC1 Sample sequencer 1 
-	PLL_Init();               // set system clock to 16 MHz
 	PWM_Init();
   PortF_Init();          // inititlize switches and LEDs in SW_LED module
   EnableInterrupts();	
@@ -64,47 +62,47 @@ void System_Init(void){
 
 void object_follower(void)
 {
+ 
 	uint8_t i;
-	
-	//calibrate the sensor
-	for(i =0; i <10;i++){
-		//Read the value of each sensor and save 
-		ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
+	for(i=0;i<10;i++){
+				ReadADCMedianFilter(&FrontMedian,&LeftMedian,&RightMedian);
 	}
 	
-	do{
-		// Read ADC values for each sensor and save
-		ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-
-	}while((FrontSensor < TOO_CLOSE) || (FrontSensor < TOO_FAR));
-	
-	//Move Back if too close
-	if(FrontSensor > TOO_CLOSE){
-		Backward();
-	}
-	else if(FrontSensor < TOO_FAR && LeftSensor < TOO_FAR && RightSensor <TOO_FAR){
-		Forward();
-	}
-	else{
-		// Turn left 
-		if((LeftSensor < FOLLOW_DIST) && (RightSensor > FOLLOW_DIST)){
-			MoveLeft();
-		}
-		//turn right
-		else if((RightSensor < FOLLOW_DIST) && (LeftSensor > FOLLOW_DIST)){
-			MoveRight();
-		}
-		else if((LeftSensor > FOLLOW_DIST) && (LeftSensor < FOLLOW_DIST) && (RightSensor > FOLLOW_DIST) && (RightSensor < FOLLOW_DIST)){
-								Stop();
-						}
-		else{
-			Forward();
-		}
+	while(1){
+		ReadADCMedianFilter(&FrontMedian,&LeftMedian,&RightMedian);
 		
+		uint16_t Front = FrontMedian;
+		uint16_t Left = LeftMedian;
+		uint16_t Right = RightMedian;
+		
+
+		
+	if (Front >= TOO_CLOSE) {
+			// Too close ? RED LED
+			GPIO_PORTF_DATA_R = 0x02; // RED
+			Backward();
+	}
+	else if (Front > FOLLOW_DIST) {
+			// In range (not too close, not too far) ? GREEN LED
+			GPIO_PORTF_DATA_R = 0x08; // GREEN
+			Stop();
+	}
+	else if (Front <= TOO_FAR) {
+			// Too far ? BLUE LED
+			GPIO_PORTF_DATA_R = 0x04; // BLUE
+			Forward();
+	}
+	else {
+			// Optional: Between FOLLOW_DIST and TOO_CLOSE range
+			GPIO_PORTF_DATA_R = 0x0A; // maybe yellowish (red+green)
+	}
+
+
+		int done = 0;
+	}
 	
 }
-	
-	}
+
 
 
 void wall_follower(void){

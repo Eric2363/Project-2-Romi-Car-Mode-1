@@ -3,79 +3,45 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.43.0.0
-Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Eric S, CSULB, LIC=----
+IDE-Version: µVision V5.39.0.0
+Copyright (C) 2023 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Eric Santana
+CSULB
+User-based license: Keil MDK Community (non-commercial free of charge)
+Valid until: May 31 2033. Cached until: Nov 4 2025
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.43.0.0
-Toolchain Path:  C:\Kiel\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.24
-Assembler:       Armasm.exe V6.24
-Linker/Locator:  ArmLink.exe V6.24
-Library Manager: ArmAr.exe V6.24
-Hex Converter:   FromElf.exe V6.24
-CPU DLL:         SARMCM3.DLL V5.43.0.0
+Toolchain:       Keil MDK Community (non-commercial free of charge  Version: 5.39.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.21
+Assembler:       Armasm.exe V6.21
+Linker/Locator:  ArmLink.exe V6.21
+Library Manager: ArmAr.exe V6.21
+Hex Converter:   FromElf.exe V6.21
+CPU DLL:         SARMCM3.DLL V5.39.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
 Target DLL:      lmidk-agdi.dll V???
-Dialog DLL:      TCM.DLL V1.56.6.0
+Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\santa\OneDrive\Desktop\project-2-part-3-group-4-Mode-1-Feature\Following_Robot\Project2.uvprojx
-Project File Date:  10/22/2025
+C:\Users\fallo\Desktop\Following_Robot\Project2.uvprojx
+Project File Date:  10/23/2025
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.24', folder: 'C:\Kiel\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Ultrasonic Range Finder'
-assembling startup.s...
-compiling PLL.c...
 compiling FollowMe.c...
-compiling PortF.c...
-compiling PWM.c...
+assembling startup.s...
 compiling Timer1.c...
 compiling ADC1SS1.c...
-FollowingRobot.c(72): warning: passing 'volatile uint16_t *' (aka 'volatile unsigned short *') to parameter of type 'uint16_t *' (aka 'unsigned short *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-   72 |                 ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-      |                            ^~~~~~~~~~~
-.\ADC1SS1.h(16): note: passing argument to parameter 'ain2' here
-   16 | void ADC1_In298(uint16_t *ain2, uint16_t *ain3, uint16_t *ain1);
-      |                           ^
-FollowingRobot.c(72): warning: passing 'volatile uint16_t *' (aka 'volatile unsigned short *') to parameter of type 'uint16_t *' (aka 'unsigned short *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-   72 |                 ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-      |                                        ^~~~~~~~~~~~
-.\ADC1SS1.h(16): note: passing argument to parameter 'ain3' here
-   16 | void ADC1_In298(uint16_t *ain2, uint16_t *ain3, uint16_t *ain1);
-      |                                           ^
-FollowingRobot.c(72): warning: passing 'volatile uint16_t *' (aka 'volatile unsigned short *') to parameter of type 'uint16_t *' (aka 'unsigned short *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-   72 |                 ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-      |                                                     ^~~~~~~~~~~~
-.\ADC1SS1.h(16): note: passing argument to parameter 'ain1' here
-   16 | void ADC1_In298(uint16_t *ain2, uint16_t *ain3, uint16_t *ain1);
-      |                                                           ^
-FollowingRobot.c(77): warning: passing 'volatile uint16_t *' (aka 'volatile unsigned short *') to parameter of type 'uint16_t *' (aka 'unsigned short *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-   77 |                 ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-      |                            ^~~~~~~~~~~
-.\ADC1SS1.h(16): note: passing argument to parameter 'ain2' here
-   16 | void ADC1_In298(uint16_t *ain2, uint16_t *ain3, uint16_t *ain1);
-      |                           ^
-FollowingRobot.c(77): warning: passing 'volatile uint16_t *' (aka 'volatile unsigned short *') to parameter of type 'uint16_t *' (aka 'unsigned short *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-   77 |                 ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-      |                                        ^~~~~~~~~~~~
-.\ADC1SS1.h(16): note: passing argument to parameter 'ain3' here
-   16 | void ADC1_In298(uint16_t *ain2, uint16_t *ain3, uint16_t *ain1);
-      |                                           ^
-FollowingRobot.c(77): warning: passing 'volatile uint16_t *' (aka 'volatile unsigned short *') to parameter of type 'uint16_t *' (aka 'unsigned short *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-   77 |                 ADC1_In298(&LeftSensor,&FrontSensor,&RightSensor);
-      |                                                     ^~~~~~~~~~~~
-.\ADC1SS1.h(16): note: passing argument to parameter 'ain1' here
-   16 | void ADC1_In298(uint16_t *ain2, uint16_t *ain3, uint16_t *ain1);
-      |                                                           ^
-6 warnings generated.
+compiling PortF.c...
+compiling PLL.c...
+compiling PWM.c...
 compiling FollowingRobot.c...
 linking...
-Program Size: Code=2776 RO-data=16 RW-data=0 ZI-data=1128  
+Program Size: Code=2876 RO-data=16 RW-data=0 ZI-data=1144  
 FromELF: creating hex file...
-".\SysTickPLL.axf" - 0 Error(s), 6 Warning(s).
+".\SysTickPLL.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -92,8 +58,8 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Ultrasonic_Range_Finder
-  C:/Kiel/ARM/CMSIS/6.2.0/CMSIS/Core/Include
-  C:/Kiel/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123
+  C:/Users/fallo/AppData/Local/Arm/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include
+  C:/Users/fallo/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123
 
 <h2>Collection of Component Files used:</h2>
 
