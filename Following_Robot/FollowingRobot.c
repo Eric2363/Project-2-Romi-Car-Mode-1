@@ -10,10 +10,22 @@
 #include "PortF.h"
 #include "PLL.h"
 
-#define TOO_FAR 1100
-#define FOLLOW_DIST 2000
-#define TOO_CLOSE 3045
-#define OUT_OF_RANGE 500
+
+// ---- Left sensor ----
+#define LEFT_TOO_CLOSE   3081   // ~10 cm
+#define LEFT_FOLLOW      2314   // mid between 10–20 cm
+#define LEFT_TOO_FAR     1546   // ~20 cm
+
+// ---- Front sensor ----
+#define FRONT_TOO_CLOSE  3397
+#define FRONT_FOLLOW     2556
+#define FRONT_TOO_FAR    1716
+
+// ---- Right sensor ----
+#define RIGHT_TOO_CLOSE  2856
+#define RIGHT_FOLLOW     2220
+#define RIGHT_TOO_FAR    1583
+
 
 enum robot_modes {INACTIVE, OBJECT_FOLLOWER, WALL_FOLLOWER};
 
@@ -78,65 +90,36 @@ void object_follower(void)
 	//calibrate ADC
 	uint8_t i;
 	for(i=0;i<20;i++){
-	ReadADCMedianFilter(&FrontMedian,&LeftMedian,&RightMedian);
+	ReadADCMedianFilter(&FrontMedian,&RightMedian,&LeftMedian);
 	}
 	
 	// wait for a object
 	do{
-		ReadADCMedianFilter(&FrontMedian,&LeftMedian,&RightMedian);
-	}while((FrontMedian > TOO_CLOSE)||(FrontMedian < TOO_FAR));
+		ReadADCMedianFilter(&FrontMedian,&RightMedian,&LeftMedian);
+	}while((FrontMedian > FRONT_TOO_CLOSE)||(FrontMedian < FRONT_TOO_FAR));
 	
 	//Object following loop
 	while(1){
 		
 		//Get current distance value for each sensor
-		ReadADCMedianFilter(&FrontMedian,&LeftMedian,&RightMedian);
+		ReadADCMedianFilter(&FrontMedian,&RightMedian,&LeftMedian);
 		
 		//Watchwindow view
 		uint16_t Front = FrontMedian;
 		uint16_t Left = LeftMedian;
 		uint16_t Right = RightMedian;
 		
-	
-		//Distance Control with Front Sensor
-		if(FrontMedian > FOLLOW_DIST){
-			Backward(); // Move backwards
-			
 		
-		}
-		else if(FrontMedian < FOLLOW_DIST){
-			//Too far so move forward
-			Forward();
-			
-		}
-		else{
-			// Perfect Distance
-			Stop();
-			
-		}
-		//======================Direction Control: Left & Right Sensor===============================
-		
-		if((LeftMedian > TOO_CLOSE)){
-			//Object is closer to right sensor so turn right
-//			if(LefttMedian > FOLLOW_DIST){
-//				
-//				Backward();
-//				
-//			}
-//			else if(FrontMedian < FOLLOW_DIST){
-//				Forward();
-//			}
-			
-			BackLeft();
-		
+		if(FrontMedian > FRONT_TOO_CLOSE){
 			GPIO_PORTF_DATA_R = RED;
 		}
-//		else if((RightMedian  > TOO_CLOSE)){
-//			//Object is closer to left sensor so turn left
-//			BackRight();
-
-//			GPIO_PORTF_DATA_R = GREEN;
-//		}
+		else if(LeftMedian > LEFT_TOO_CLOSE){
+			GPIO_PORTF_DATA_R = BLUE;
+		}
+		else if(RightMedian > RIGHT_TOO_CLOSE){
+			GPIO_PORTF_DATA_R = GREEN;
+		}
+	
 		
 		int done = 0;
 	}
@@ -149,17 +132,5 @@ void object_follower(void)
 void wall_follower(void){
 }
 
-sensor_id_t BigSensor(uint16_t Left, uint16_t Front, uint16_t Right){
 
-	ReadADCMedianFilter(&FrontMedian,&LeftMedian,&RightMedian);
-	
-	sensor_id_t owner = SENSOR_LEFT;
-	uint16_t best = Lm;
-	
-	if( Fm >= best){
-		best = Fm;
-		owner = SENSOR_FONT;
-	}
-	
-}
 

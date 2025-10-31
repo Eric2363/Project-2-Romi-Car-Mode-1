@@ -1,4 +1,4 @@
-Component: Arm Compiler for Embedded 6.24 Tool: armlink [5f371500]
+Component: Arm Compiler for Embedded 6.21 Tool: armlink [5ec1fa00]
 
 ==============================================================================
 
@@ -47,13 +47,8 @@ Section Cross References
     followingrobot.o(.text.System_Init) refers to portf.o(.text.PortF_Init) for PortF_Init
     followingrobot.o(.ARM.exidx.text.System_Init) refers to followingrobot.o(.text.System_Init) for [Anonymous Symbol]
     followingrobot.o(.text.object_follower) refers to adc1ss1.o(.text.ReadADCMedianFilter) for ReadADCMedianFilter
-    followingrobot.o(.text.object_follower) refers to pwm.o(.text.Backward) for Backward
-    followingrobot.o(.text.object_follower) refers to pwm.o(.text.Forward) for Forward
-    followingrobot.o(.text.object_follower) refers to pwm.o(.text.Stop) for Stop
-    followingrobot.o(.text.object_follower) refers to pwm.o(.text.BackLeft) for BackLeft
     followingrobot.o(.ARM.exidx.text.object_follower) refers to followingrobot.o(.text.object_follower) for [Anonymous Symbol]
     followingrobot.o(.ARM.exidx.text.wall_follower) refers to followingrobot.o(.text.wall_follower) for [Anonymous Symbol]
-    followingrobot.o(.ARM.exidx.text.BigSensor) refers to followingrobot.o(.text.BigSensor) for [Anonymous Symbol]
     adc1ss1.o(.ARM.exidx.text.ADC1_SS1_Init) refers to adc1ss1.o(.text.ADC1_SS1_Init) for [Anonymous Symbol]
     adc1ss1.o(.ARM.exidx.text.ADC1_In321) refers to adc1ss1.o(.text.ADC1_In321) for [Anonymous Symbol]
     adc1ss1.o(.ARM.exidx.text.median) refers to adc1ss1.o(.text.median) for [Anonymous Symbol]
@@ -181,9 +176,13 @@ Removing Unused input sections from the image.
     Removing portf.o(.ARM.exidx.text.PortF_Init), (8 bytes).
     Removing pwm.o(.text), (0 bytes).
     Removing pwm.o(.ARM.exidx.text.PWM_Init), (8 bytes).
+    Removing pwm.o(.text.Duty), (38 bytes).
     Removing pwm.o(.ARM.exidx.text.Duty), (8 bytes).
+    Removing pwm.o(.text.Forward), (30 bytes).
     Removing pwm.o(.ARM.exidx.text.Forward), (8 bytes).
+    Removing pwm.o(.text.Backward), (30 bytes).
     Removing pwm.o(.ARM.exidx.text.Backward), (8 bytes).
+    Removing pwm.o(.text.BackLeft), (32 bytes).
     Removing pwm.o(.ARM.exidx.text.BackLeft), (8 bytes).
     Removing pwm.o(.text.BackRight), (32 bytes).
     Removing pwm.o(.ARM.exidx.text.BackRight), (8 bytes).
@@ -191,6 +190,7 @@ Removing Unused input sections from the image.
     Removing pwm.o(.ARM.exidx.text.MoveLeft), (8 bytes).
     Removing pwm.o(.text.MoveRight), (32 bytes).
     Removing pwm.o(.ARM.exidx.text.MoveRight), (8 bytes).
+    Removing pwm.o(.text.Stop), (12 bytes).
     Removing pwm.o(.ARM.exidx.text.Stop), (8 bytes).
     Removing timer1.o(.text), (0 bytes).
     Removing timer1.o(.text.Timer1_Init), (60 bytes).
@@ -206,8 +206,6 @@ Removing Unused input sections from the image.
     Removing followingrobot.o(.ARM.exidx.text.System_Init), (8 bytes).
     Removing followingrobot.o(.ARM.exidx.text.object_follower), (8 bytes).
     Removing followingrobot.o(.ARM.exidx.text.wall_follower), (8 bytes).
-    Removing followingrobot.o(.text.BigSensor), (2 bytes).
-    Removing followingrobot.o(.ARM.exidx.text.BigSensor), (8 bytes).
     Removing followingrobot.o(.ARM.use_no_argv), (4 bytes).
     Removing followme.o(.text), (0 bytes).
     Removing adc1ss1.o(.text), (0 bytes).
@@ -216,7 +214,7 @@ Removing Unused input sections from the image.
     Removing adc1ss1.o(.ARM.exidx.text.median), (8 bytes).
     Removing adc1ss1.o(.ARM.exidx.text.ReadADCMedianFilter), (8 bytes).
 
-38 unused section(s) (total 484 bytes) removed from the image.
+41 unused section(s) (total 616 bytes) removed from the image.
 
 ==============================================================================
 
@@ -343,20 +341,15 @@ Image Symbol Table
     .text                                    0x000003da   Section        0  indicate_semi.o(.text)
     [Anonymous Symbol]                       0x000003dc   Section        0  adc1ss1.o(.text.ADC1_In321)
     [Anonymous Symbol]                       0x0000043c   Section        0  adc1ss1.o(.text.ADC1_SS1_Init)
-    [Anonymous Symbol]                       0x00000550   Section        0  pwm.o(.text.BackLeft)
-    [Anonymous Symbol]                       0x00000570   Section        0  pwm.o(.text.Backward)
-    [Anonymous Symbol]                       0x00000590   Section        0  pwm.o(.text.Duty)
-    [Anonymous Symbol]                       0x000005b8   Section        0  pwm.o(.text.Forward)
-    [Anonymous Symbol]                       0x000005d8   Section        0  pll.o(.text.PLL_Init)
-    [Anonymous Symbol]                       0x0000065c   Section        0  pwm.o(.text.PWM_Init)
-    [Anonymous Symbol]                       0x00000770   Section        0  portf.o(.text.PortF_Init)
-    [Anonymous Symbol]                       0x000008a4   Section        0  adc1ss1.o(.text.ReadADCMedianFilter)
-    [Anonymous Symbol]                       0x00000958   Section        0  pwm.o(.text.Stop)
-    [Anonymous Symbol]                       0x00000964   Section        0  followingrobot.o(.text.System_Init)
-    [Anonymous Symbol]                       0x00000980   Section        0  followingrobot.o(.text.main)
-    [Anonymous Symbol]                       0x000009c4   Section        0  adc1ss1.o(.text.median)
-    [Anonymous Symbol]                       0x00000a64   Section        0  followingrobot.o(.text.object_follower)
-    [Anonymous Symbol]                       0x00000b54   Section        0  followingrobot.o(.text.wall_follower)
+    [Anonymous Symbol]                       0x00000550   Section        0  pll.o(.text.PLL_Init)
+    [Anonymous Symbol]                       0x000005d4   Section        0  pwm.o(.text.PWM_Init)
+    [Anonymous Symbol]                       0x000006e8   Section        0  portf.o(.text.PortF_Init)
+    [Anonymous Symbol]                       0x0000081c   Section        0  adc1ss1.o(.text.ReadADCMedianFilter)
+    [Anonymous Symbol]                       0x000008d0   Section        0  followingrobot.o(.text.System_Init)
+    [Anonymous Symbol]                       0x000008ec   Section        0  followingrobot.o(.text.main)
+    [Anonymous Symbol]                       0x00000930   Section        0  adc1ss1.o(.text.median)
+    [Anonymous Symbol]                       0x000009d0   Section        0  followingrobot.o(.text.object_follower)
+    [Anonymous Symbol]                       0x00000acc   Section        0  followingrobot.o(.text.wall_follower)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
     ReadADCMedianFilter.middle1              0x20000060   Data           2  adc1ss1.o(.bss.ReadADCMedianFilter.middle1)
     [Anonymous Symbol]                       0x20000060   Section        0  adc1ss1.o(.bss.ReadADCMedianFilter.middle1)
@@ -604,22 +597,17 @@ Image Symbol Table
     __semihosting_library_function           0x000003db   Thumb Code     0  indicate_semi.o(.text)
     ADC1_In321                               0x000003dd   Thumb Code    96  adc1ss1.o(.text.ADC1_In321)
     ADC1_SS1_Init                            0x0000043d   Thumb Code   274  adc1ss1.o(.text.ADC1_SS1_Init)
-    BackLeft                                 0x00000551   Thumb Code    32  pwm.o(.text.BackLeft)
-    Backward                                 0x00000571   Thumb Code    30  pwm.o(.text.Backward)
-    Duty                                     0x00000591   Thumb Code    38  pwm.o(.text.Duty)
-    Forward                                  0x000005b9   Thumb Code    30  pwm.o(.text.Forward)
-    PLL_Init                                 0x000005d9   Thumb Code   132  pll.o(.text.PLL_Init)
-    PWM_Init                                 0x0000065d   Thumb Code   276  pwm.o(.text.PWM_Init)
-    PortF_Init                               0x00000771   Thumb Code   306  portf.o(.text.PortF_Init)
-    ReadADCMedianFilter                      0x000008a5   Thumb Code   178  adc1ss1.o(.text.ReadADCMedianFilter)
-    Stop                                     0x00000959   Thumb Code    12  pwm.o(.text.Stop)
-    System_Init                              0x00000965   Thumb Code    28  followingrobot.o(.text.System_Init)
-    main                                     0x00000981   Thumb Code    66  followingrobot.o(.text.main)
-    median                                   0x000009c5   Thumb Code   160  adc1ss1.o(.text.median)
-    object_follower                          0x00000a65   Thumb Code   238  followingrobot.o(.text.object_follower)
-    wall_follower                            0x00000b55   Thumb Code     2  followingrobot.o(.text.wall_follower)
-    Region$$Table$$Base                      0x00000b58   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000b68   Number         0  anon$$obj.o(Region$$Table)
+    PLL_Init                                 0x00000551   Thumb Code   132  pll.o(.text.PLL_Init)
+    PWM_Init                                 0x000005d5   Thumb Code   276  pwm.o(.text.PWM_Init)
+    PortF_Init                               0x000006e9   Thumb Code   306  portf.o(.text.PortF_Init)
+    ReadADCMedianFilter                      0x0000081d   Thumb Code   178  adc1ss1.o(.text.ReadADCMedianFilter)
+    System_Init                              0x000008d1   Thumb Code    28  followingrobot.o(.text.System_Init)
+    main                                     0x000008ed   Thumb Code    66  followingrobot.o(.text.main)
+    median                                   0x00000931   Thumb Code   160  adc1ss1.o(.text.median)
+    object_follower                          0x000009d1   Thumb Code   250  followingrobot.o(.text.object_follower)
+    wall_follower                            0x00000acd   Thumb Code     2  followingrobot.o(.text.wall_follower)
+    Region$$Table$$Base                      0x00000ad0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000ae0   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
     mode                                     0x2000006c   Data           1  followingrobot.o(.bss.mode)
@@ -632,117 +620,109 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000b68, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000ae0, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000b68, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000ae0, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x00000284   Code   RO            3  * RESET               startup.o
-    0x00000284   0x00000284   0x00000008   Code   RO          111  * !!!main             c_w.l(__main.o)
-    0x0000028c   0x0000028c   0x0000005c   Code   RO          276    !!!scatter          c_w.l(__scatter.o)
-    0x000002e8   0x000002e8   0x00000002   Code   RO          277    !!handler_null      c_w.l(__scatter.o)
+    0x00000284   0x00000284   0x00000008   Code   RO          109  * !!!main             c_w.l(__main.o)
+    0x0000028c   0x0000028c   0x0000005c   Code   RO          274    !!!scatter          c_w.l(__scatter.o)
+    0x000002e8   0x000002e8   0x00000002   Code   RO          275    !!handler_null      c_w.l(__scatter.o)
     0x000002ea   0x000002ea   0x00000002   PAD
-    0x000002ec   0x000002ec   0x0000001c   Code   RO          280    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x00000308   0x00000308   0x00000002   Code   RO          138    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          145    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          147    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          149    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          152    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          154    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          156    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          159    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          161    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          163    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          165    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          167    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          169    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          171    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          173    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          175    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          177    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          179    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          183    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          185    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          187    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000000   Code   RO          189    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x0000030a   0x0000030a   0x00000002   Code   RO          190    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x0000030c   0x0000030c   0x00000002   Code   RO          212    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x0000030e   0x0000030e   0x00000000   Code   RO          227    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x0000030e   0x0000030e   0x00000000   Code   RO          229    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x0000030e   0x0000030e   0x00000000   Code   RO          232    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x0000030e   0x0000030e   0x00000000   Code   RO          235    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x0000030e   0x0000030e   0x00000000   Code   RO          237    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x0000030e   0x0000030e   0x00000000   Code   RO          240    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x0000030e   0x0000030e   0x00000002   Code   RO          241    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x00000310   0x00000310   0x00000000   Code   RO          113    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x00000310   0x00000310   0x00000000   Code   RO          115    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x00000310   0x00000310   0x00000006   Code   RO          127    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          117    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x00000316   0x00000316   0x00000004   Code   RO          118    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x0000031a   0x0000031a   0x00000000   Code   RO          120    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x0000031a   0x0000031a   0x00000008   Code   RO          121    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x00000322   0x00000322   0x00000002   Code   RO          142    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000324   0x00000324   0x00000000   Code   RO          192    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000324   0x00000324   0x00000004   Code   RO          193    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000328   0x00000328   0x00000006   Code   RO          194    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x000002ec   0x000002ec   0x0000001c   Code   RO          278    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x00000308   0x00000308   0x00000002   Code   RO          136    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          143    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          145    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          147    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          150    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          152    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          154    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          157    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          159    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          161    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          163    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          165    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          167    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          169    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          171    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          173    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          175    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          177    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          181    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          183    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          185    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000000   Code   RO          187    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x0000030a   0x0000030a   0x00000002   Code   RO          188    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x0000030c   0x0000030c   0x00000002   Code   RO          210    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x0000030e   0x0000030e   0x00000000   Code   RO          225    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x0000030e   0x0000030e   0x00000000   Code   RO          227    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x0000030e   0x0000030e   0x00000000   Code   RO          230    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x0000030e   0x0000030e   0x00000000   Code   RO          233    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x0000030e   0x0000030e   0x00000000   Code   RO          235    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x0000030e   0x0000030e   0x00000000   Code   RO          238    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x0000030e   0x0000030e   0x00000002   Code   RO          239    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x00000310   0x00000310   0x00000000   Code   RO          111    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x00000310   0x00000310   0x00000000   Code   RO          113    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x00000310   0x00000310   0x00000006   Code   RO          125    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          115    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x00000316   0x00000316   0x00000004   Code   RO          116    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x0000031a   0x0000031a   0x00000000   Code   RO          118    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x0000031a   0x0000031a   0x00000008   Code   RO          119    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x00000322   0x00000322   0x00000002   Code   RO          140    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000324   0x00000324   0x00000000   Code   RO          190    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000324   0x00000324   0x00000004   Code   RO          191    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000328   0x00000328   0x00000006   Code   RO          192    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x0000032e   0x0000032e   0x00000002   PAD
     0x00000330   0x00000330   0x00000030   Code   RO            4    .text               startup.o
-    0x00000360   0x00000360   0x00000006   Code   RO          109    .text               c_w.l(heapauxi.o)
-    0x00000366   0x00000366   0x0000004a   Code   RO          129    .text               c_w.l(sys_stackheap_outer.o)
-    0x000003b0   0x000003b0   0x00000012   Code   RO          131    .text               c_w.l(exit.o)
+    0x00000360   0x00000360   0x00000006   Code   RO          107    .text               c_w.l(heapauxi.o)
+    0x00000366   0x00000366   0x0000004a   Code   RO          127    .text               c_w.l(sys_stackheap_outer.o)
+    0x000003b0   0x000003b0   0x00000012   Code   RO          129    .text               c_w.l(exit.o)
     0x000003c2   0x000003c2   0x00000002   PAD
-    0x000003c4   0x000003c4   0x00000008   Code   RO          139    .text               c_w.l(libspace.o)
-    0x000003cc   0x000003cc   0x0000000c   Code   RO          202    .text               c_w.l(sys_exit.o)
-    0x000003d8   0x000003d8   0x00000002   Code   RO          217    .text               c_w.l(use_no_semi.o)
-    0x000003da   0x000003da   0x00000000   Code   RO          219    .text               c_w.l(indicate_semi.o)
+    0x000003c4   0x000003c4   0x00000008   Code   RO          137    .text               c_w.l(libspace.o)
+    0x000003cc   0x000003cc   0x0000000c   Code   RO          200    .text               c_w.l(sys_exit.o)
+    0x000003d8   0x000003d8   0x00000002   Code   RO          215    .text               c_w.l(use_no_semi.o)
+    0x000003da   0x000003da   0x00000000   Code   RO          217    .text               c_w.l(indicate_semi.o)
     0x000003da   0x000003da   0x00000002   PAD
-    0x000003dc   0x000003dc   0x00000060   Code   RO           89    .text.ADC1_In321    adc1ss1.o
-    0x0000043c   0x0000043c   0x00000112   Code   RO           87    .text.ADC1_SS1_Init  adc1ss1.o
+    0x000003dc   0x000003dc   0x00000060   Code   RO           87    .text.ADC1_In321    adc1ss1.o
+    0x0000043c   0x0000043c   0x00000112   Code   RO           85    .text.ADC1_SS1_Init  adc1ss1.o
     0x0000054e   0x0000054e   0x00000002   PAD
-    0x00000550   0x00000550   0x00000020   Code   RO           29    .text.BackLeft      pwm.o
-    0x00000570   0x00000570   0x0000001e   Code   RO           27    .text.Backward      pwm.o
-    0x0000058e   0x0000058e   0x00000002   PAD
-    0x00000590   0x00000590   0x00000026   Code   RO           23    .text.Duty          pwm.o
-    0x000005b6   0x000005b6   0x00000002   PAD
-    0x000005b8   0x000005b8   0x0000001e   Code   RO           25    .text.Forward       pwm.o
-    0x000005d6   0x000005d6   0x00000002   PAD
-    0x000005d8   0x000005d8   0x00000084   Code   RO           59    .text.PLL_Init      pll.o
-    0x0000065c   0x0000065c   0x00000114   Code   RO           21    .text.PWM_Init      pwm.o
-    0x00000770   0x00000770   0x00000132   Code   RO           13    .text.PortF_Init    portf.o
-    0x000008a2   0x000008a2   0x00000002   PAD
-    0x000008a4   0x000008a4   0x000000b2   Code   RO           93    .text.ReadADCMedianFilter  adc1ss1.o
-    0x00000956   0x00000956   0x00000002   PAD
-    0x00000958   0x00000958   0x0000000c   Code   RO           37    .text.Stop          pwm.o
-    0x00000964   0x00000964   0x0000001c   Code   RO           69    .text.System_Init   followingrobot.o
-    0x00000980   0x00000980   0x00000042   Code   RO           67    .text.main          followingrobot.o
-    0x000009c2   0x000009c2   0x00000002   PAD
-    0x000009c4   0x000009c4   0x000000a0   Code   RO           91    .text.median        adc1ss1.o
-    0x00000a64   0x00000a64   0x000000ee   Code   RO           71    .text.object_follower  followingrobot.o
-    0x00000b52   0x00000b52   0x00000002   PAD
-    0x00000b54   0x00000b54   0x00000002   Code   RO           73    .text.wall_follower  followingrobot.o
-    0x00000b56   0x00000b56   0x00000002   PAD
-    0x00000b58   0x00000b58   0x00000010   Data   RO          275    Region$$Table       anon$$obj.o
+    0x00000550   0x00000550   0x00000084   Code   RO           59    .text.PLL_Init      pll.o
+    0x000005d4   0x000005d4   0x00000114   Code   RO           21    .text.PWM_Init      pwm.o
+    0x000006e8   0x000006e8   0x00000132   Code   RO           13    .text.PortF_Init    portf.o
+    0x0000081a   0x0000081a   0x00000002   PAD
+    0x0000081c   0x0000081c   0x000000b2   Code   RO           91    .text.ReadADCMedianFilter  adc1ss1.o
+    0x000008ce   0x000008ce   0x00000002   PAD
+    0x000008d0   0x000008d0   0x0000001c   Code   RO           69    .text.System_Init   followingrobot.o
+    0x000008ec   0x000008ec   0x00000042   Code   RO           67    .text.main          followingrobot.o
+    0x0000092e   0x0000092e   0x00000002   PAD
+    0x00000930   0x00000930   0x000000a0   Code   RO           89    .text.median        adc1ss1.o
+    0x000009d0   0x000009d0   0x000000fa   Code   RO           71    .text.object_follower  followingrobot.o
+    0x00000aca   0x00000aca   0x00000002   PAD
+    0x00000acc   0x00000acc   0x00000002   Code   RO           73    .text.wall_follower  followingrobot.o
+    0x00000ace   0x00000ace   0x00000002   PAD
+    0x00000ad0   0x00000ad0   0x00000010   Data   RO          273    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000b68, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000ae0, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000b68, Size: 0x00000470, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000ae0, Size: 0x00000470, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000        -       0x00000060   Zero   RW          140    .bss                c_w.l(libspace.o)
-    0x20000060        -       0x00000002   Zero   RW          100    .bss.ReadADCMedianFilter.middle1  adc1ss1.o
-    0x20000062        -       0x00000002   Zero   RW           98    .bss.ReadADCMedianFilter.middle2  adc1ss1.o
-    0x20000064        -       0x00000002   Zero   RW           96    .bss.ReadADCMedianFilter.middle3  adc1ss1.o
-    0x20000066        -       0x00000002   Zero   RW           99    .bss.ReadADCMedianFilter.oldest1  adc1ss1.o
-    0x20000068        -       0x00000002   Zero   RW           97    .bss.ReadADCMedianFilter.oldest2  adc1ss1.o
-    0x2000006a        -       0x00000002   Zero   RW           95    .bss.ReadADCMedianFilter.oldest3  adc1ss1.o
-    0x2000006c        -       0x00000001   Zero   RW           77    .bss.mode           followingrobot.o
-    0x2000006d   0x00000b68   0x00000003   PAD
+    0x20000000        -       0x00000060   Zero   RW          138    .bss                c_w.l(libspace.o)
+    0x20000060        -       0x00000002   Zero   RW           98    .bss.ReadADCMedianFilter.middle1  adc1ss1.o
+    0x20000062        -       0x00000002   Zero   RW           96    .bss.ReadADCMedianFilter.middle2  adc1ss1.o
+    0x20000064        -       0x00000002   Zero   RW           94    .bss.ReadADCMedianFilter.middle3  adc1ss1.o
+    0x20000066        -       0x00000002   Zero   RW           97    .bss.ReadADCMedianFilter.oldest1  adc1ss1.o
+    0x20000068        -       0x00000002   Zero   RW           95    .bss.ReadADCMedianFilter.oldest2  adc1ss1.o
+    0x2000006a        -       0x00000002   Zero   RW           93    .bss.ReadADCMedianFilter.oldest3  adc1ss1.o
+    0x2000006c        -       0x00000001   Zero   RW           75    .bss.mode           followingrobot.o
+    0x2000006d   0x00000ae0   0x00000003   PAD
     0x20000070        -       0x00000000   Zero   RW            2    HEAP                startup.o
     0x20000070        -       0x00000400   Zero   RW            1    STACK               startup.o
 
@@ -754,17 +734,17 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       708          0          0          0         12       1672   adc1ss1.o
-       334          0          0          0          1       1557   followingrobot.o
-       132          0          0          0          0        470   pll.o
-       306          0          0          0          0        503   portf.o
-       418          0          0          0          0       1284   pwm.o
-       692        632          0          0       1024       1044   startup.o
+       708          0          0          0         12       1657   adc1ss1.o
+       346          0          0          0          1       1475   followingrobot.o
+       132          0          0          0          0        452   pll.o
+       306          0          0          0          0        485   portf.o
+       276          0          0          0          0       1266   pwm.o
+       692        632          0          0       1024       1004   startup.o
 
     ----------------------------------------------------------------------
-      2608        632         16          0       1040       6530   Object Totals
+      2472        632         16          0       1040       6339   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-        18          0          0          0          3          0   (incl. Padding)
+        12          0          0          0          3          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -810,15 +790,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2904        648         16          0       1136       6926   Grand Totals
-      2904        648         16          0       1136       6926   ELF Image Totals
-      2904        648         16          0          0          0   ROM Totals
+      2768        648         16          0       1136       6735   Grand Totals
+      2768        648         16          0       1136       6735   ELF Image Totals
+      2768        648         16          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2920 (   2.85kB)
+    Total RO  Size (Code + RO Data)                 2784 (   2.72kB)
     Total RW  Size (RW Data + ZI Data)              1136 (   1.11kB)
-    Total ROM Size (Code + RO Data + RW Data)       2920 (   2.85kB)
+    Total ROM Size (Code + RO Data + RW Data)       2784 (   2.72kB)
 
 ==============================================================================
 
