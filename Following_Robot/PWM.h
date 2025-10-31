@@ -31,6 +31,8 @@ void Duty(unsigned long duty_L, unsigned long duty_R);
 
 void Forward(void);
 void Backward(void);
+void BackLeft(void);
+void BackRight(void);
 void MoveLeft(void);
 void MoveRight(void);
 void Stop(void);

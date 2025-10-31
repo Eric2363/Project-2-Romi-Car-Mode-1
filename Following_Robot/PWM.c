@@ -53,12 +53,20 @@ void Duty(unsigned long duty_L, unsigned long duty_R){
 void Forward(){
 	
 	GPIO_PORTB_DATA_R |= FORWARD;
-	Duty(DUTY50,DUTY50);
+	Duty(DUTY30,DUTY30);
 }
 
 void Backward(){
 	GPIO_PORTB_DATA_R &=~FORWARD;
-	Duty(DUTY50,DUTY50);
+	Duty(DUTY30,DUTY30);
+}
+void BackLeft(){
+	GPIO_PORTB_DATA_R &=~ FORWARD;
+	Duty(DUTY30,DUTY20);
+}
+void BackRight(){
+	GPIO_PORTB_DATA_R &=~ FORWARD;
+	Duty(DUTY20,DUTY30);
 }
 void MoveLeft(){
 	GPIO_PORTB_DATA_R |= FORWARD;
