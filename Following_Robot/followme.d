@@ -1,1 +1,0 @@
-./followme.o: FollowMe.c
